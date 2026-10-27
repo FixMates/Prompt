@@ -7,7 +7,7 @@
     "predev": "node scripts/copy-ffmpeg.mjs",
     "dev": "vite",
     "prebuild": "node scripts/copy-ffmpeg.mjs",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/publish-root.mjs",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "preview": "vite preview"
   },

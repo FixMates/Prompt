@@ -22,7 +22,7 @@ npm run build
 npm run preview
 ```
 
-The build runs TypeScript checking followed by Vite production bundling. Static files are written to `dist/`, including the on-demand FFmpeg core. `npm test` runs six unit tests with Node’s built-in test runner for storyboard timing and caption/hashtag generation.
+The build runs TypeScript checking followed by Vite production bundling. Static files are written to `dist/`, including the on-demand FFmpeg core, then copied to the repository root for branch-based GitHub Pages hosting. The Vite source entry is `app-src/index.html`; the root `index.html` is the generated production page. `npm test` runs six unit tests with Node’s built-in test runner for storyboard timing and caption/hashtag generation.
 
 ## Create and export a Reel
 
