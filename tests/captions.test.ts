@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { captionTemplate, generateHashtags } from '../src/features/captions.ts';
+import { captionTemplate, generateHashtags } from '../app-src/src/features/captions.ts';
 
 test('hashtags use prompt terms and category tags without duplicates or common filler', () => {
   const tags = generateHashtags('A portrait with dramatic moonlight and portrait details', 'Portraits', 12);

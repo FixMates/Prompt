@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sceneEndTimes, sceneIndexAt } from '../src/features/storyboard.ts';
+import { sceneEndTimes, sceneIndexAt } from '../app-src/src/features/storyboard.ts';
 
 test('30-second storyboard follows requested scene boundaries', () => {
   assert.deepEqual(sceneEndTimes(30), [3, 9, 13, 22, 26, 30]);
