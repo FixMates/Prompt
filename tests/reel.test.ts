@@ -13,11 +13,12 @@ test('10, 15, 20, and 30 second timelines exactly cover the chosen duration',()=
   }
 });
 
-test('default intro preserves title, prompt number, and 1.75 second duration',()=>{
+test('default intro preserves the screenshot title, 13px size, and two second duration',()=>{
   const text=createDefaultText();
-  assert.equal(text.introTitle.text,'A PROMPT-TO-REEL STORY');
+  assert.equal(text.introTitle.text,'“Every Prompt Tells a Visual Story.”');
+  assert.equal(text.introTitle.fontSize,13);
   assert.equal(text.promptNumber.text,'PROMPT #01');
-  assert.equal(buildTimeline(15).scenes.intro.duration,1.75);
+  assert.equal(buildTimeline(20).scenes.intro.duration,2);
 });
 
 test('prompt ID binds to a padded prompt number',()=>{

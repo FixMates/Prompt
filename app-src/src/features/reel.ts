@@ -13,7 +13,7 @@ export type TextStyle = {
 };
 
 export const TEXT_DEFAULTS: Record<string, { label: string; scenes: SceneKey[]; style: TextStyle }> = {
-  introTitle: {label:'Intro title',scenes:['intro'],style:{text:'A PROMPT-TO-REEL STORY',visible:true,fontFamily:'Inter',fontSize:30,fontWeight:800,color:'#c3b7ff',backgroundColor:'#111116',backgroundOpacity:0,align:'center',outline:false,letterSpacing:1.5,lineSpacing:1.25,maxWidth:84,wrap:true,animation:'fade',start:0,end:99,position:'Center',x:50,y:43,locked:true}},
+  introTitle: {label:'Intro title',scenes:['intro'],style:{text:'“Every Prompt Tells a Visual Story.”',visible:true,fontFamily:'Inter',fontSize:13,fontWeight:800,color:'#c3b7ff',backgroundColor:'#111116',backgroundOpacity:0,align:'center',outline:false,letterSpacing:1.5,lineSpacing:1.25,maxWidth:84,wrap:true,animation:'fade',start:0,end:99,position:'Center',x:50,y:43,locked:true}},
   promptNumber: {label:'Prompt number',scenes:['intro'],style:{text:'PROMPT #01',visible:true,fontFamily:'Inter',fontSize:15,fontWeight:600,color:'#c3b7ff',backgroundColor:'#111116',backgroundOpacity:0,align:'center',outline:false,letterSpacing:2,lineSpacing:1.2,maxWidth:72,wrap:true,animation:'fade',start:0,end:99,position:'Bottom center',x:50,y:75,locked:true}},
   hook: {label:'Opening hook',scenes:['original'],style:{text:'Watch This Transformation',visible:true,fontFamily:'Inter',fontSize:24,fontWeight:700,color:'#ffffff',backgroundColor:'#111116',backgroundOpacity:.32,align:'center',outline:true,letterSpacing:0,lineSpacing:1.2,maxWidth:84,wrap:true,animation:'fade',start:0,end:99,position:'Top center',x:50,y:13,locked:true}},
   beforeLabel: {label:'BEFORE label',scenes:['original','transition'],style:{text:'BEFORE',visible:true,fontFamily:'Inter',fontSize:13,fontWeight:700,color:'#ffffff',backgroundColor:'#111116',backgroundOpacity:.45,align:'center',outline:true,letterSpacing:1.5,lineSpacing:1.2,maxWidth:24,wrap:true,animation:'fade',start:0,end:99,position:'Bottom left',x:12,y:84,locked:true}},
@@ -31,8 +31,8 @@ export const TEXT_DEFAULTS: Record<string, { label: string; scenes: SceneKey[]; 
   watermark: {label:'Optional watermark',scenes:['intro','original','prompt','transition','final','cta'],style:{text:'',visible:false,fontFamily:'Inter',fontSize:11,fontWeight:600,color:'#ffffff',backgroundColor:'#111116',backgroundOpacity:0,align:'right',outline:true,letterSpacing:.5,lineSpacing:1.2,maxWidth:32,wrap:true,animation:'none',start:0,end:99,position:'Bottom right',x:92,y:91,locked:true}},
 };
 
-export const INTRO_STYLE_DEFAULTS = { duration:1.75, logoSize:88, animation:'fade' as 'fade'|'slide'|'zoom'|'none', showLogo:true, showTitle:true, showNumber:true };
-const BASE_TIMES: Record<Exclude<SceneKey,'cta'>,number> = {intro:1.75,original:1.5,prompt:2,transition:.8,final:4};
+export const INTRO_STYLE_DEFAULTS = { duration:2, logoSize:88, animation:'fade' as 'fade'|'slide'|'zoom'|'none', showLogo:true, showTitle:true, showNumber:true };
+const BASE_TIMES: Record<Exclude<SceneKey,'cta'>,number> = {intro:2,original:4,prompt:4,transition:4,final:4};
 
 export function buildTimeline(total:number, overrides:Partial<Record<Exclude<SceneKey,'cta'>,number>>={}) {
   if(!REEL_DURATIONS.includes(total as ReelDuration)) throw new RangeError('Reel duration must be 10, 15, 20, or 30 seconds.');

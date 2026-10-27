@@ -78,7 +78,7 @@ function drawTextElement(key:string,scene:SceneKey,localTime:number,sceneDuratio
   const box=selectedCanvasRect(key,style,top,boxHeight,width);textBoxes[key]=box;
   if(style.backgroundOpacity>0){ctx.fillStyle=rgba(style.backgroundColor,style.backgroundOpacity);fillRoundRect(box.x,box.y,box.width,box.height,8);}
   ctx.textAlign=style.align;ctx.textBaseline='middle';ctx.fillStyle=style.color;ctx.shadowColor=style.outline?'rgba(0,0,0,.9)':'transparent';ctx.shadowBlur=style.outline?8:0;ctx.shadowOffsetY=style.outline?2:0;
-  const anchor=style.x/100*360,textX=style.align==='left'?box.x+9:style.align==='right'?box.x+box.width-9:anchor;
+  const textX=style.align==='left'?box.x+9:style.align==='right'?box.x+box.width-9:box.x+box.width/2;
   lines.forEach((line,index)=>ctx.fillText(line,textX,top+7+lineHeight*(index+.5),width-18));
   if(selectedText===key&&targetIsPreview()){ctx.shadowBlur=0;ctx.setLineDash([5,4]);ctx.lineWidth=1.3;ctx.strokeStyle='#a998ff';ctx.strokeRect(box.x,box.y,box.width,box.height);}
   ctx.restore();
@@ -127,7 +127,7 @@ function drawTransition(tl:ReturnType<typeof timeline>,time:number){
   const scene=tl.scenes.transition,p=transitionProgress(time,scene.start,scene.duration),kind=settings().transition;
   if(!assets.result){drawMissingAsset('GENERATED RESULT REQUIRED');drawTextElement('transformationHeadline','transition',time-scene.start,scene.duration);return;}
   if(kind==='crossfade'){ctx.save();ctx.globalAlpha=p;drawImageStage(assets.result);ctx.restore();}
-  else if(kind==='horizontal-wipe'){ctx.save();ctx.beginPath();ctx.rect(0,0,360*p,640);ctx.clip();drawImageStage(assets.result);ctx.restore();}
+  else if(kind==='horizontal-wipe'){ctx.save();ctx.beginPath();ctx.rect(360*(1-p),0,360*p,640);ctx.clip();drawImageStage(assets.result);ctx.restore();}
   else if(kind==='vertical-wipe'){ctx.save();ctx.beginPath();ctx.rect(0,0,360,640*p);ctx.clip();drawImageStage(assets.result);ctx.restore();}
   else if(kind==='center-reveal'){ctx.save();ctx.beginPath();ctx.arc(180,320,Math.hypot(180,320)*p,0,Math.PI*2);ctx.clip();drawImageStage(assets.result);ctx.restore();}
   else {const mix=smoothProgress(p);ctx.save();ctx.globalAlpha=mix;if(assets.original)drawFit(assets.original,0,0,180,640,'cover',settings().focalX,settings().focalY);else{ctx.fillStyle='#251f37';ctx.fillRect(0,0,180,640);}drawFit(assets.result,180,0,180,640,'cover',settings().focalX,settings().focalY);ctx.restore();}
@@ -148,7 +148,7 @@ function render(time=0,target:HTMLCanvasElement=preview){
   if(scene==='intro')drawIntro(tl,t);
   else if(scene==='original'){
     if(assets.original)drawImageStage(assets.original);else drawMissingAsset('ORIGINAL PHOTO NEEDED');
-    drawTextElement('hook','original',local,range.duration);drawTextElement('beforeLabel','original',local,range.duration);drawSceneLabels(scene,local,range.duration);
+    drawTextElement('hook','original',local,range.duration);drawSceneLabels(scene,local,range.duration);
   }else if(scene==='prompt'){
     drawPromptStage(local,range.duration);
     drawSceneLabels(scene,local,range.duration);
