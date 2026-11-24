@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.tsbuildinfo
 
+recordings/
+.env
+.env.*
+!.env.example
