@@ -3,7 +3,7 @@
 Visible Chromium automation for the Bubbli onboarding-to-product journey. It records a browser video and generates milestone screenshots plus timestamped JSON/SRT action captions.
 
 ## Setup
-Node.js 20+, a dedicated disposable Bubbli demo creator account, and a local sample product image are required.
+Node.js 20+, a dedicated disposable Bubbli demo creator account, and two local images are required: a square creator logo/avatar and a product listing image.
 
 ```powershell
 npm install
@@ -11,7 +11,7 @@ npx playwright install chromium
 Copy-Item automation/bubbli-demo/.env.example .env
 ```
 
-Fill `.env` with `BUBBLI_EMAIL`, `BUBBLI_PASSWORD` and an absolute `BUBBLI_DEMO_IMAGE` path. Optional variables configure store identity and product details. Never commit `.env`, credentials or customer data.
+Fill `.env` with `BUBBLI_EMAIL`, `BUBBLI_PASSWORD`, `BUBBLI_PROFILE_IMAGE` and `BUBBLI_PRODUCT_IMAGE`. Use absolute local file paths. The profile image is uploaded during creator onboarding; the product image is uploaded when creating the product. `BUBBLI_DEMO_IMAGE` remains supported as a legacy fallback. Never commit `.env`, credentials or customer data.
 
 ## Run
 ```powershell
